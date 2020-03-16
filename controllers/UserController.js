@@ -45,6 +45,8 @@ class UserController {
 
           user.loadFromJSON(result);
 
+          user.save();
+
           this.getTr(user, tr);
 
           this.addEventTr(tr);
@@ -81,7 +83,7 @@ class UserController {
         content => {
           values.photo = content;
 
-          this.insert(values);
+          values.save();
 
           this.addLine(values);
 
@@ -187,15 +189,6 @@ class UserController {
 
       this.addLine(user);
     });
-  }
-
-  insert(data) {
-    let users = this.getUserStorage();
-
-    users.push(data);
-
-    // sessionStorage.setItem("users", JSON.stringify(users));
-    localStorage.setItem("users", JSON.stringify(users));
   }
 
   //Adicionar linha a tabela
